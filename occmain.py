@@ -5,7 +5,7 @@ from run.occrun import run_model
 from datasets.occur.util import (parameter_grid,
                                  all_pre_data_list)
 from datasets.occur.split_train_test import fog_data_train_test_split
-
+안뇽~
 
 region = 'temp'
 obs_point_list = [887, 921]
