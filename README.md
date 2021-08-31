@@ -1,4 +1,4 @@
-# Fog_DNN
+# Fog_DNN(pytorch-based)
 
 - The original data files are stored by station in the 'fogdata' folder.
 
