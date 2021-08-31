@@ -1,6 +1,6 @@
 # Fog_DNN(pytorch-based, Used Pycharm)
 
-- The original data files are stored by station in the 'fogdata' folder.
+- The original data files are stored by station in the 'fogdata' folder in csv format.
 
 - You can modify the parameters and learn model from each model's '~main.py' file ('Fog_DNN/occmain.py', 'Fog_DNN/vismain.py')
 
