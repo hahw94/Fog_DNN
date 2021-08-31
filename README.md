@@ -2,7 +2,7 @@
 
 - The original data files are stored by station in the 'fogdata' folder in csv format.
 
-- You can modify the parameters and learn model from each model's '~main.py' file ('Fog_DNN/occmain.py', 'Fog_DNN/vismain.py')
+- You can modify the parameters and learn model from each model's '~main.py' file **('Fog_DNN/occmain.py', 'Fog_DNN/vismain.py')**
 
 - the results are saved by model, station, and visibility limit value in the 'result' folder.
 
