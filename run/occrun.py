@@ -92,9 +92,9 @@ def run_model(data_path, save_path, pre_data_list, obs_point, vis_limit_list, al
 
         X_train_over, y_train_over = SMOTE(random_state=0).fit_resample(train_x,
                                                                         train_y)  # smote.fit_sample(train_x,train_y)
-        print('불균형 데이터 알고리즘 적용 전 학습용 피처/레이블 데이터 세트: ', train_x.shape, train_y.shape)
-        print('불균형 데이터 알고리즘 적용 후 학습용 피처/레이블 데이터 세트: ', X_train_over.shape, y_train_over.shape)
-        print('불균형 데이터 알고리즘 적용 후 레이블 값 분포: \n', pd.Series(y_train_over).value_counts())
+        print('Before applying unbalanced data algorithms, Learning Feature/Label Dataset: ', train_x.shape, train_y.shape)
+        print('After applying unbalanced data algorithms, Learning Feature/Label Dataset: ', X_train_over.shape, y_train_over.shape)
+        print('After applying unbalanced data algorithms, Label Value Distribution: \n', pd.Series(y_train_over).value_counts())
 
         torch_train_x, torch_train_y, torch_test_x, torch_test_y = convert_torch_type(X_train_over, y_train_over,
                                                                                       test_x, test_y)
@@ -119,7 +119,7 @@ def run_model(data_path, save_path, pre_data_list, obs_point, vis_limit_list, al
         test_f1_score_list = []
 
         for i in range(len(all_parameters_list)):
-            print("진행률 : {:.2f}%".format(((i + 1) / len(all_parameters_list)) * 100))
+            print("Progress : {:.2f}%".format(((i + 1) / len(all_parameters_list)) * 100))
             start = time.time()
             num_unit_1, num_unit_2, num_unit_3, lr, batch_size, n_epochs, drop_out = all_parameters_list[i][0], \
                                                                                      all_parameters_list[i][1], \
