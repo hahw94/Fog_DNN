@@ -1,14 +1,16 @@
-# Fog_DNN(pytorch-based)
+# Fog_DNN(pytorch-based, Used Pycharm)
 
-- The original data files are stored by station in the 'fogdata' folder.
+- The original data files are stored by station in the 'fogdata' folder in csv format.
 
-- You can modify the parameters and learn model from each model's '~main.py' file ('fogdnn/occmain.py', 'fogdnn/vismain.py')
+- You can modify the parameters and learn model from each model's '~main.py' file ('Fog_DNN/occmain.py', 'Fog_DNN/vismain.py')
 
 - the results are saved by model, station, and visibility limit value in the 'result' folder.
 
-- [occurrence model code] directory location -> 'fogdnn/datasets/occur/~', 'fogdnn/model/occdnn.py', 'fogdnn/run/occrun.py', 'fogdnn/occmain.py'
+- [occurrence model code] directory location <br>
+➔ 'Fog_DNN/datasets/occur/~', 'Fog_DNN/model/occdnn.py', 'Fog_DNN/run/occrun.py', 'Fog_DNN/occmain.py'
 
-- [visibility model code] directory location -> 'fogdnn/datasets/vis/~', 'fogdnn/model/vis.py', 'fogdnn/run/visrun.py', 'fogdnn/vismain.py'
+- [visibility model code] directory location <br>
+➔ 'Fog_DNN/datasets/vis/~', 'Fog_DNN/model/vis.py', 'Fog_DNN/run/visrun.py', 'Fog_DNN/vismain.py'
 
 ![OCCM](https://user-images.githubusercontent.com/49590432/131450714-138800b2-6f84-44b5-a52d-8ac95d8226a7.png)
 
