@@ -1,4 +1,3 @@
-import time
 import torch
 import numpy as np
 import pandas as pd
@@ -120,7 +119,6 @@ def run_model(data_path, save_path, pre_data_list, obs_point, vis_limit_list, al
 
         for i in range(len(all_parameters_list)):
             print("Progress : {:.2f}%".format(((i + 1) / len(all_parameters_list)) * 100))
-            start = time.time()
             num_unit_1, num_unit_2, num_unit_3, lr, batch_size, n_epochs, drop_out = all_parameters_list[i][0], \
                                                                                      all_parameters_list[i][1], \
                                                                                      all_parameters_list[i][2], \
@@ -141,7 +139,6 @@ def run_model(data_path, save_path, pre_data_list, obs_point, vis_limit_list, al
             momentum = 0.5
             no_cuda = False
             batch_size = batch_size
-            # 배치사이즈와 모멘텀등 몇가지 변수들을 지정해줍니다.
             torch.manual_seed(seed)
             use_cuda = not no_cuda and torch.cuda.is_available()
             device = torch.device("cuda" if use_cuda else "cpu")
@@ -150,12 +147,10 @@ def run_model(data_path, save_path, pre_data_list, obs_point, vis_limit_list, al
                                                            drop_out=drop_out).to(device)
             optimizer = optim.Adam(network.parameters(), lr=lr)
             criterion = nn.BCEWithLogitsLoss(reduction='mean')
-            # 모델구조를 만들어 줍니다.
 
             for epoch in range(n_epochs):
                 epoch_loss = 0
                 epoch_acc = 0
-                # print('\nEpoch {} / {} \nFold number {} / {}'.format(epoch + 1, epochs, fold + 1 , kfold.get_n_splits()))
                 # network.train()
                 for batch_index, (x_batch, y_batch) in enumerate(train_loader):
                     x_batch, y_batch = x_batch.to(device), y_batch.to(device)
@@ -196,10 +191,10 @@ def run_model(data_path, save_path, pre_data_list, obs_point, vis_limit_list, al
                         format(epoch, epoch_loss, epoch_acc / len(train_loader), test_epoch_loss,
                                test_epoch_acc / len(test_loader)))
 
-                    print("(TEST) Occurrence Accuracy : {:.2f} / Occurrence Precision : {:.2f} / F1 Score : {} ".
+                    print("(TEST) Occurrence Accuracy : {:.3f} / Occurrence Precision : {:.3f} / F1 Score : {:.3f} ".
                           format(test_occurrence_accuracy, test_occurrence_precision,  test_f1_score))
 
-                    print("(TEST) Nonoccurrence Accuracy : {:.2f} / Nonoccurrence Precision : {:.2f} / Nonoccurrence F1 Score : {}\n ".
+                    print("(TEST) Nonoccurrence Accuracy : {:.3f} / Nonoccurrence Precision : {:.3f} / Nonoccurrence F1 Score : {:.3f}\n ".
                         format(test_nonoccurrence_accuracy, test_nonoccurrence_precision, test_nonf1_score))
 
 
@@ -240,14 +235,14 @@ def run_model(data_path, save_path, pre_data_list, obs_point, vis_limit_list, al
                 obs_point, vis_limit_num, num_unit_1, num_unit_2, num_unit_3, lr, batch_size, n_epochs, drop_out))
 
         # save model result to csv file
-        result_df = pd.DataFrame({'Train Nonoccurrence': train_nonoccurrence_list,
-                                  'Train Occurrence': train_occurrence_list,
-                                  'Train Occurrence precision': train_occurrence_precision_list,
+        result_df = pd.DataFrame({'Train Recall(non)': train_nonoccurrence_list,
+                                  'Train Recall': train_occurrence_list,
+                                  'Train precision': train_occurrence_precision_list,
                                   'Train F1 score': train_f1_score_list,
                                   'Train RMSE': train_rmse_list,
-                                  'Test Nonoccurrence': test_nonoccurrence_list,
-                                  'Test Occurrence': test_occurrence_list,
-                                  'Test Occurrence precision': test_occurrence_precision_list,
+                                  'Test Recall(non)': test_nonoccurrence_list,
+                                  'Test Recall': test_occurrence_list,
+                                  'Test precision': test_occurrence_precision_list,
                                   'Test F1 score': test_f1_score_list,
                                   'Test RMSE': test_rmse_list,})
 

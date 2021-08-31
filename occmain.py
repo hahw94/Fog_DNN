@@ -12,6 +12,7 @@ obs_point_list = [887, 921]
 for obs_point in obs_point_list:
     data_path = './fogdata/' + str(obs_point)
     save_path = './result/occur/'
+    # Parameter values to test
     num_unit_1_list = [128, 256, 512]  # number of first layer of dnn
     num_unit_2_list = [128, 256, 512]  # number of second layer of dnn
     num_unit_3_list = [32, 64, 128]  # number of third layer of dnn
@@ -19,7 +20,7 @@ for obs_point in obs_point_list:
     batch_size_list = [64]  # batch size
     epochs_list = [500, 1000]  # epochs num
     drop_out_list = [0]  # drop_out_rate
-    vis_limit_list = [1000]
+    vis_limit_list = [1000] # visbility limit value
 
     all_parameters_list = parameter_grid(num_unit_1_list, num_unit_2_list,
                                           num_unit_3_list, lr_list,
@@ -36,9 +37,9 @@ for obs_point in obs_point_list:
                          (['AT', 'RH', 'WS', 'WD', 'Td', 'WT', 'WT-AT'], 'norm'),
                          ([], 'sin'),
                          (['Local Time', 'DOY', 'vis', 'Fog_30'], 'none'), ]
-    # print(all_pre_data_list(pre_data_list))
+
     input_model_num = len(all_pre_data_list(pre_data_list)) - 2
-    # print(obs_point, pre_data_list)
+
     for vis_limit_num in vis_limit_list:
         obs_save_path = save_path + str(obs_point) + "\\" + str(vis_limit_num)
 

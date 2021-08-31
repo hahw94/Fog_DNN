@@ -34,22 +34,27 @@ def train(model, device, n_epochs, optimizer, loss_fn, batch_size, kfold, torch_
                 loss.backward()
                 optimizer.step()
 
-            train_r2_score = r2_score(np.array(torch_train_y), model(torch_train_x.cuda()).cpu().detach().numpy())
-            train_r_score = return_corr(model, torch_train_x, torch_train_y)
-            # train_df = pd.DataFrame({'Target':np.array(torch_train_y),'Model':model(torch_train_x.cuda()).cpu().detach().numpy().reshape(-1)})
-            train_rmse = sqrt(mean_squared_error(np.array(torch_train_y), model(torch_train_x.cuda()).cpu().detach().numpy()))
 
-            test_r2_score = r2_score(np.array(torch_test_y), model(torch_test_x.cuda()).cpu().detach().numpy())
-            test_r_score = return_corr(model, torch_test_x, torch_test_y)
-            # test_df = pd.DataFrame({'Target':np.array(torch_test_y),'Model':model(torch_test_x.cuda()).cpu().detach().numpy().reshape(-1)})
-            test_rmse = sqrt(mean_squared_error(np.array(torch_test_y), model(torch_test_x.cuda()).cpu().detach().numpy()))
 
-            if epoch == (n_epochs-1):
+            if (epoch % 100 == 0) | (epoch == n_epochs-1):
+                train_r2_score = r2_score(np.array(torch_train_y), model(torch_train_x.cuda()).cpu().detach().numpy())
+                train_r_score = return_corr(model, torch_train_x, torch_train_y)
+                train_rmse = sqrt(mean_squared_error(np.array(torch_train_y), model(torch_train_x.cuda()).cpu().detach().numpy()))
+
+                test_r2_score = r2_score(np.array(torch_test_y), model(torch_test_x.cuda()).cpu().detach().numpy())
+                test_r_score = return_corr(model, torch_test_x, torch_test_y)
+                test_rmse = sqrt(mean_squared_error(np.array(torch_test_y), model(torch_test_x.cuda()).cpu().detach().numpy()))
                 print(" Fold : {}, Epoch : {}\ntrain r2 score : {:.3f}, train r score : {:.3f}, train_rmse : {:.2f}\ntest r2 score : {:.3f}, test r score : {:.3f}, test_rmse : {:.2f}\n\n".
                       format(fold + 1, epoch + 1, train_r2_score, train_r_score, train_rmse,test_r2_score, test_r_score, test_rmse))
 
+    train_r2_score = r2_score(np.array(torch_train_y), model(torch_train_x.cuda()).cpu().detach().numpy())
+    train_r_score = return_corr(model, torch_train_x, torch_train_y)
+    train_rmse = sqrt(mean_squared_error(np.array(torch_train_y), model(torch_train_x.cuda()).cpu().detach().numpy()))
 
-    print("Fold : {}, Epoch : {}\n train r2 score : {:.3f}, train r score : {:.3f}, train_rmse : {:.2f}\ntest r2 score : {:.3f}, test r score : {:.3f}, test_rmse : {:.2f}\n\n".
+    test_r2_score = r2_score(np.array(torch_test_y), model(torch_test_x.cuda()).cpu().detach().numpy())
+    test_r_score = return_corr(model, torch_test_x, torch_test_y)
+    test_rmse = sqrt(mean_squared_error(np.array(torch_test_y), model(torch_test_x.cuda()).cpu().detach().numpy()))
+    print("(Final Result) Fold : {}, Epoch : {}\n train r2 score : {:.3f}, train r score : {:.3f}, train_rmse : {:.2f}\ntest r2 score : {:.3f}, test r score : {:.3f}, test_rmse : {:.2f}\n\n".
           format(fold + 1, epoch + 1, train_r2_score, train_r_score, train_rmse, test_r2_score, test_r_score, test_rmse))
 
     return model, train_r2_score, train_r_score, train_rmse, test_r2_score, test_r_score, test_rmse

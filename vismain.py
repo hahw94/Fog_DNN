@@ -10,14 +10,15 @@ obs_point_list = [887, 921]
 for obs_point in obs_point_list:
     data_path = './fogdata/' + str(obs_point)
     save_path = './result/vis/'
-    num_unit_1_list = [128, 256, 512]  # number of first and second layer of dnn
-    num_unit_2_list = [128, 256, 512]  # number of thrid layer of dnn
-    num_unit_3_list = [32, 64, 128]  # number of forth layer of dnn
+    # Parameter values to test
+    num_unit_1_list = [128, 256, 512]  # number of first layer of dnn
+    num_unit_2_list = [128, 256, 512]  # number of second layer of dnn
+    num_unit_3_list = [32, 64, 128]  # number of third layer of dnn
     lr_list = [0.0004] # learning rate
     batch_size_list = [64] # batch size
     epochs_list = [500, 1000] # epochs num
     k_fold_list = [5] # num of fold
-    vis_limit_list = [10000]
+    vis_limit_list = [1000] # visbility limit value
 
     all_parameters_list = parameter_grid(num_unit_1_list, num_unit_2_list,
                                           num_unit_3_list, lr_list,
