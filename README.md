@@ -1,6 +1,6 @@
 # Fog_DNN
 
-## You can modify and learn parameters within each model's main.py file, and the results are saved by model, station, and visibility limit value in the 'result' folder.
+### You can modify and learn parameters within each model's '~main.py' file, and the results are saved by model, station, and visibility limit value in the 'result' folder.
 
 ![OCCM](https://user-images.githubusercontent.com/49590432/131450714-138800b2-6f84-44b5-a52d-8ac95d8226a7.png)
 
