@@ -121,7 +121,7 @@ def run_model(data_path, save_path, pre_data_list, obs_point, vis_limit_list, al
         used_time_list = []
 
         for i in range(len(all_parameters_list)):
-            print("진행률 : {:.2f}%".format(((i + 1) / len(all_parameters_list)) * 100))
+            print("Progress : {:.2f}%".format(((i + 1) / len(all_parameters_list)) * 100))
             start = time.time()
             num_unit_1, num_unit_2, num_unit_3, lr, batch_size, n_epochs, n_fold = all_parameters_list[i][0], \
                                                                                    all_parameters_list[i][1], \
